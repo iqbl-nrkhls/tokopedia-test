@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <Header />
       <main css={css({
-        paddingTop: '60px',
+        padding: '60px 15px 15px',
       })}>
         {children}
       </main>

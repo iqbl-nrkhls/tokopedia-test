@@ -6,7 +6,7 @@ type menuType = {
 
 export const menu: menuType[] = [
   {
-    title: 'Animes',
+    title: 'Anime',
     path: '/'
   },
   {

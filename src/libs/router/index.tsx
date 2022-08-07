@@ -1,4 +1,5 @@
 import AnimeDetailView from "libs/views/animeDetailView";
+import CollectionView from "libs/views/collectionView";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AnimeList from "../views/animeList";
 
@@ -11,7 +12,7 @@ export default function Router() {
           <Route path=":id" element={<AnimeDetailView />} />
         </Route>
         <Route path="collection">
-          <Route index element={<>yu</>} />
+          <Route index element={<CollectionView />} />
           <Route path=":id" element={<AnimeDetailView />} />
         </Route>
       </Routes>

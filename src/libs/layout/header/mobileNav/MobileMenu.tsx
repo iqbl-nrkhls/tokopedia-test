@@ -2,14 +2,15 @@
 import { css } from '@emotion/react'
 import { mq } from 'libs/emotion/mediaQuery';
 import { menu } from 'libs/models/constant/menu';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 
 type MobileMenuProps = {
   show: boolean;
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
-export const MobileMenu = forwardRef(({ show }: MobileMenuProps, ref: ForwardedRef<HTMLElement>) => {
+export const MobileMenu = forwardRef(({ show, onClick }: MobileMenuProps, ref: ForwardedRef<HTMLElement>) => {
 
   return (
     <div css={css({
@@ -40,20 +41,21 @@ export const MobileMenu = forwardRef(({ show }: MobileMenuProps, ref: ForwardedR
           {menu.map((e, key) => (
             <li key={key}>
               <Link to={e.path}
-              css={css({
-                display: 'block',
-                textDecoration: 'none',
-                fontWeight: 'bold',
-                color: '#000',
-                padding: '20px 10px',
-                borderRadius: '5px',
-                ":hover": {
-                  background: '#00000007'
-                },
-                ":focus": {
-                  background: '#0000001f'
-                }
-              })}>
+                onClick={onClick}
+                css={css({
+                  display: 'block',
+                  textDecoration: 'none',
+                  fontWeight: 'bold',
+                  color: '#000',
+                  padding: '20px 10px',
+                  borderRadius: '5px',
+                  ":hover": {
+                    background: '#00000007'
+                  },
+                  ":focus": {
+                    background: '#0000001f'
+                  }
+                })}>
                 {e.title}
               </Link>
             </li>

@@ -14,7 +14,7 @@ export function MobileNav() {
   return (
     <>
       <Hamburger onClick={() => setShowMenu(true)} />
-      <MobileMenu ref={ref} show={showMenu} />
+      <MobileMenu ref={ref} show={showMenu} onClick={() => setShowMenu(false)} />
     </>
   )
 }
