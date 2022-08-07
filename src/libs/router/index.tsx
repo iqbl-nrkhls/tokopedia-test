@@ -7,7 +7,11 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AnimeList />} />
-        <Route path="/anime">
+        <Route path="anime">
+          <Route path=":id" element={<AnimeDetailView />} />
+        </Route>
+        <Route path="collection">
+          <Route index element={<>yu</>} />
           <Route path=":id" element={<AnimeDetailView />} />
         </Route>
       </Routes>
