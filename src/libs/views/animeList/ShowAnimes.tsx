@@ -2,9 +2,11 @@
 import { useQuery } from "@apollo/client";
 import { css } from "@emotion/react";
 import { Card } from "libs/components/card";
+import { LoadingCard } from "libs/components/loadingCard";
 import { Paginate } from "libs/components/pagination";
+import { ShowError } from "libs/components/showError";
 import { mq } from "libs/emotion/mediaQuery";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { GET_ANIMES } from "../../models/anime";
 
 type AnimeType = {
@@ -36,8 +38,8 @@ export function ShowAnimes() {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <LoadingCard />;
+  if (true) return <ShowError />;
 
   return (
     <>

@@ -19,7 +19,11 @@ export function Card({ id, coverImage, title }: CardProps) {
         borderRadius: '10px',
         textDecoration: 'none',
         color: '#000',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        transition: '.5s',
+        ':hover,:focus': {
+          transform: 'scale(1.05)'
+        }
       })}
     >
       <img
@@ -31,7 +35,9 @@ export function Card({ id, coverImage, title }: CardProps) {
           objectFit: 'cover'
         })}
       />
-      <h3>{title}</h3>
+      <h3 css={css({
+        margin: '10px'
+      })}>{title}</h3>
     </Link >
   )
 }

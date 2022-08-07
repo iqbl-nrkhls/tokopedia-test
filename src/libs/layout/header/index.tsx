@@ -11,6 +11,7 @@ export function Header() {
       top: 0,
       left: 0,
       width: '100%',
+      zIndex: 10,
     })}>
       <div css={css({
         padding: '10px 15px',
