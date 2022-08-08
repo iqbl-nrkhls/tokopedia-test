@@ -7,7 +7,7 @@ import { Paginate } from "libs/components/pagination";
 import { ShowError } from "libs/components/showError";
 import { mq } from "libs/emotion/mediaQuery";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GET_ANIMES } from "../../models/anime";
+import { GET_ALL_ANIME } from "../../models/anime";
 
 type AnimeType = {
   id: string;
@@ -20,18 +20,16 @@ type AnimeType = {
   };
 };
 
-export function ShowAnimes() {
+export function ShowAnime() {
   const location = useLocation();
   const navigate = useNavigate();
   const currentPage = new URLSearchParams(location.search).get("p") || 1;
   
   const handlePageChange = (page: number) => {
-    console.log(page);
-    
     navigate(`/?p=${page}`)
   }
 
-  const { loading, error, data } = useQuery(GET_ANIMES, {
+  const { loading, error, data } = useQuery(GET_ALL_ANIME, {
     variables: {
       page: currentPage,
       perPage: 10,
@@ -39,7 +37,7 @@ export function ShowAnimes() {
   });
 
   if (loading) return <LoadingCard />;
-  if (true) return <ShowError />;
+  if (error) return <ShowError />;
 
   return (
     <>

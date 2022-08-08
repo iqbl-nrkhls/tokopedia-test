@@ -1,25 +1,45 @@
-import { DocumentNode, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
-export const GET_ANIMES: DocumentNode = gql`
-    query ($id: Int, $page: Int, $perPage: Int, $search: String) {
-      Page (page: $page, perPage: $perPage) {
-        pageInfo {
-          total
-          currentPage
-          lastPage
-          hasNextPage
-          perPage
+export const GET_ALL_ANIME = gql`
+  query ($page: Int, $perPage: Int) {
+    Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        currentPage
+        lastPage
+        hasNextPage
+        perPage
+      }
+      media(type: ANIME) {
+        id
+        title {
+          romaji
         }
-        media (id: $id, search: $search) {
-          id
-          title {
-            romaji
-          }
-          coverImage {
-            large
-            medium
-          }
+        coverImage {
+          large
+          medium
         }
       }
     }
+  }
+`;
+
+export const GET_ANIME_DETAIL = gql`
+  query ($id: Int) {
+    Media(id: $id) {
+      id
+      title {
+        romaji
+      }
+      coverImage {
+        large
+        medium
+      }
+      description
+      episodes
+      duration
+      popularity
+      genres
+    }
+  }
 `;

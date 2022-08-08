@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Layout from 'libs/layout';
-import { ShowAnimes } from './ShowAnimes';
+import { ShowAnime } from './ShowAnime';
 
 export default function ListAnimesView() {
   return (
@@ -14,7 +14,7 @@ export default function ListAnimesView() {
         Anime List
       </h1>
 
-      <ShowAnimes />
+      <ShowAnime />
 
     </Layout>
   );

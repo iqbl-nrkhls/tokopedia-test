@@ -1,11 +1,12 @@
-import Layout from "libs/layout"
-import { useParams } from "react-router-dom"
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import Layout from 'libs/layout';
+import { ShowAnimeDetail } from './ShowAnimeDetail';
 
-
-export default function AnimeDetailView () {
-  const {id} = useParams()
-
+export default function ListAnimesView() {
   return (
-    <Layout>{id}</Layout>
-  )
+    <Layout>
+      <ShowAnimeDetail />
+    </Layout>
+  );
 }
