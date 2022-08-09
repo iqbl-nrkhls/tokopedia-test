@@ -7,7 +7,7 @@ import { Paginate } from "libs/components/pagination";
 import { ShowError } from "libs/components/showError";
 import { mq } from "libs/emotion/mediaQuery";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GET_ALL_ANIME } from "../../models/anime";
+import { GET_ALL_ANIME } from "libs/models/graphQL";
 
 type AnimeType = {
   id: string;
