@@ -20,12 +20,12 @@ export function ShowAnimeDetail() {
   if (error) return <ShowError />;
 
   console.log(data);
-  const { coverImage, title, description } = data.Media;
+  const { coverImage, title } = data.Media;
 
   return (
     <>
       <HeadAnimeDetail image={coverImage.large} title={title.romaji} />
-      <ContentAnimeDetail description={description}></ContentAnimeDetail>
+      <ContentAnimeDetail data={data.Media}></ContentAnimeDetail>
 
       <SaveToCollection data={data.Media} />
     </>

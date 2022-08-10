@@ -40,6 +40,8 @@ export const GET_ANIME_DETAIL = gql`
       duration
       popularity
       genres
+      trending
+      siteUrl
     }
   }
 `;

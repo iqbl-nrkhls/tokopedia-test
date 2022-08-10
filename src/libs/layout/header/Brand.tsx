@@ -16,7 +16,7 @@ export function Brand() {
         fontSize: '28px'
       }
     })}>
-      ANIMOUS
+      ANIMPEDIA
     </h1>
   )
 }
