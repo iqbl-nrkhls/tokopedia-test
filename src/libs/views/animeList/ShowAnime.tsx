@@ -59,7 +59,7 @@ export function ShowAnime() {
             key={anime.id}
             href={`/anime/${anime.id}`}
             title={anime.title.romaji}
-            coverImage={anime.coverImage.medium}
+            coverImage={anime.coverImage.large}
           />
         ))}
       </div>

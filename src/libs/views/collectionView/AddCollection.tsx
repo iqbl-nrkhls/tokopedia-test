@@ -1,11 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { Button } from "libs/button";
 import {
   CollectionType,
-  getCollections,
   isCollectionAvailable,
   saveCollections,
 } from "libs/models/localSorage";
+import { Toast } from "libs/toast";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 type AddCollectionProps = {
   collections: CollectionType[];
@@ -13,30 +19,44 @@ type AddCollectionProps = {
 }
 
 export function AddCollection({ collections, setCollections }: AddCollectionProps) {
-  const addCollection = () => {
-    const collectionName = window.prompt("Inser collection name");
-    if (collectionName !== null && collectionName !== '') {
-      if (isCollectionAvailable(collectionName)) {
-        const newData = [...collections, { name: collectionName, data: [] }];
-        setCollections(newData);
-        saveCollections(newData);
-      } else {
-        alert("This collection name not available");
-      }
-    } else {
-      alert("Please insert collection name");
+  const addCollection = async () => {
+    const { value: collectionName } = await MySwal.fire({
+      title: "Insert a collection name",
+      input: "text",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return !value
+          ? "Please insert collection name"
+          : /[~`!#$%^&*+=\-[\]\\';,/{}|\\":<>?]/g.test(value)
+          ? "Special character is not allowed"
+          : !isCollectionAvailable(value)
+          ? "Collection not available"
+          : null;
+      },
+    });
+
+    if (collectionName) {
+      const newData = [...collections, { name: collectionName, data: [] }];
+      setCollections(newData);
+      saveCollections(newData);
+      Toast.fire({
+        icon: "success",
+        title: "Collection successfully added",
+      });
     }
   };
 
   return (
-    <button
+    <Button
       onClick={addCollection}
       css={css({
         display: "block",
-        margin: "20px auto",
+        margin: "40px auto",
+        background: '#fff',
+        boxShadow: '0 2px 10px 5px #00000007'
       })}
     >
       Add a Collection
-    </button>
+    </Button>
   );
 }

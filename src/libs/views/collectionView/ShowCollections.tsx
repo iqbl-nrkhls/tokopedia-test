@@ -33,14 +33,25 @@ export function ShowCollections() {
           },
         })}
       >
-        {collections.map((collection, i) => (
-          <Card
-            key={i}
-            href={`/collection/${i}`}
-            title={collection.name}
-            coverImage={collection.data[0]?.coverImage}
-          />
-        ))}
+        {collections.length > 0 ? (
+          collections.map((collection, i) => (
+            <Card
+              key={i}
+              href={`/collection/${i}`}
+              title={collection.name}
+              coverImage={collection.data[0]?.coverImage || "./default.png"}
+            />
+          ))
+        ) : (
+          <p
+            css={css({
+              textAlign: "center",
+              gridColumn: 'span 4',
+            })}
+          >
+            You don't have a collection
+          </p>
+        )}
       </div>
     </>
   );

@@ -24,7 +24,7 @@ export function ShowAnimeDetail() {
 
   return (
     <>
-      <HeadAnimeDetail image={coverImage.medium} title={title.romaji} />
+      <HeadAnimeDetail image={coverImage.large} title={title.romaji} />
       <ContentAnimeDetail description={description}></ContentAnimeDetail>
 
       <SaveToCollection data={data.Media} />

@@ -41,14 +41,25 @@ export function ShowCollectionDetail() {
           },
         })}
       >
-        {collection?.data.map((anime, i) => (
-          <Card
-            key={i}
-            href={`/anime/${anime.id}`}
-            title={anime.title}
-            coverImage={anime.coverImage}
-          />
-        ))}
+        {collection?.data.length > 0 ? (
+          collection?.data.map((anime, i) => (
+            <Card
+              key={i}
+              href={`/anime/${anime.id}`}
+              title={anime.title}
+              coverImage={anime.coverImage}
+            />
+          ))
+        ) : (
+          <p
+            css={css({
+              textAlign: "center",
+              gridColumn: 'span 4',
+            })}
+          >
+            There is no anime in this collection
+          </p>
+        )}
       </div>
     </>
   );
