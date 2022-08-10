@@ -49,12 +49,7 @@ export function ShowCollectionDetail() {
 
   return (
     <>
-      <h1
-        css={css({
-          textAlign: "center",
-          margin: "50px 10px",
-        })}
-      >
+      <h1 css={css({ textAlign: "center", margin: "50px 10px" })}>
         {collection?.name}
       </h1>
 
@@ -63,12 +58,8 @@ export function ShowCollectionDetail() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "20px",
-          [mq["md"]]: {
-            gridTemplateColumns: "1fr 1fr 1fr",
-          },
-          [mq["lg"]]: {
-            gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          },
+          [mq["md"]]: { gridTemplateColumns: "1fr 1fr 1fr" },
+          [mq["lg"]]: { gridTemplateColumns: "1fr 1fr 1fr 1fr" },
         })}
       >
         {collection?.data.length > 0 ? (
@@ -96,12 +87,7 @@ export function ShowCollectionDetail() {
             />
           ))
         ) : (
-          <p
-            css={css({
-              textAlign: "center",
-              gridColumn: "span 4",
-            })}
-          >
+          <p css={css({ textAlign: "center", gridColumn: "span 4" })}>
             There is no anime in this collection
           </p>
         )}

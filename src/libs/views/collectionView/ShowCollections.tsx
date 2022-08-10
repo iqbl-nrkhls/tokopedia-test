@@ -51,12 +51,8 @@ export function ShowCollections() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "20px",
-          [mq["md"]]: {
-            gridTemplateColumns: "1fr 1fr 1fr",
-          },
-          [mq["lg"]]: {
-            gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          },
+          [mq["md"]]: { gridTemplateColumns: "1fr 1fr 1fr" },
+          [mq["lg"]]: { gridTemplateColumns: "1fr 1fr 1fr 1fr" },
         })}
       >
         {collections.length > 0 ? (
@@ -84,12 +80,7 @@ export function ShowCollections() {
             />
           ))
         ) : (
-          <p
-            css={css({
-              textAlign: "center",
-              gridColumn: "span 4",
-            })}
-          >
+          <p css={css({ textAlign: "center", gridColumn: "span 4" })}>
             You don't have a collection
           </p>
         )}

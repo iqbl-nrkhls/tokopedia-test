@@ -18,12 +18,8 @@ export function LoadingCard() {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: "20px",
-        [mq["md"]]: {
-          gridTemplateColumns: "1fr 1fr 1fr",
-        },
-        [mq["lg"]]: {
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
-        },
+        [mq["md"]]: { gridTemplateColumns: "1fr 1fr 1fr" },
+        [mq["lg"]]: { gridTemplateColumns: "1fr 1fr 1fr 1fr" },
       })}
     >
       {[...Array(4)].map((e, key) => (

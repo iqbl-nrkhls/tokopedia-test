@@ -19,9 +19,7 @@ export function Button({ onClick, children, className }: ButtonProps) {
         borderRadius: "5px",
         cursor: "pointer",
         transition: ".5s",
-        ":hover": {
-          background: "#00000007",
-        },
+        ":hover": { background: "#00000007" },
       })}
       onClick={onClick}
     >

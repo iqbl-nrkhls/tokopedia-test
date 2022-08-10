@@ -23,9 +23,7 @@ export function Card({ coverImage, title, href, extraButton }: CardProps) {
         color: "#000",
         overflow: "hidden",
         transition: ".5s",
-        ":hover,:focus": {
-          transform: "scale(1.05)",
-        },
+        ":hover,:focus": { transform: "scale(1.05)" },
         ":hover #extra-button": { opacity: "1" },
       })}
     >

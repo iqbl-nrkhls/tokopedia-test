@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, Global } from "@emotion/react";
 import Pagination from "rc-pagination";
-import { ReactNode } from "react";
 
 type PaginateProps = {
   total: number;

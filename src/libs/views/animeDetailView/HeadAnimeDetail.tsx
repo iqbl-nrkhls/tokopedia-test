@@ -19,24 +19,16 @@ export function HeadAnimeDetail({ image, title }: HeadAnimeDetailProps) {
           alignItems: "end",
           marginBottom: "-60px",
         },
-        [mq["md"]]: {
-          marginBottom: "-140px",
-        },
-        [mq["lg"]]: {
-          marginBottom: "-180px",
-        },
+        [mq["md"]]: { marginBottom: "-140px" },
+        [mq["lg"]]: { marginBottom: "-180px" },
       })}
     >
       <div
         css={css({
           padding: "20px",
           flexShrink: 0,
-          [mq["sm"]]: {
-            width: "40%",
-          },
-          [mq["lg"]]: {
-            width: "400px",
-          },
+          [mq["sm"]]: { width: "40%" },
+          [mq["lg"]]: { width: "400px" },
         })}
       >
         <img
@@ -50,24 +42,16 @@ export function HeadAnimeDetail({ image, title }: HeadAnimeDetailProps) {
             borderRadius: "10px",
             boxShadow: "0 2px 10px 5px #00000007",
             objectFit: "cover",
-            [mq["sm"]]: {
-              width: "100%",
-            },
+            [mq["sm"]]: { width: "100%" },
           })}
         />
       </div>
       <h1
         css={css({
           margin: "0 20px",
-          [mq["sm"]]: {
-            marginBottom: "100px",
-          },
-          [mq["md"]]: {
-            marginBottom: "150px",
-          },
-          [mq["lg"]]: {
-            marginBottom: "200px",
-          },
+          [mq["sm"]]: { marginBottom: "100px" },
+          [mq["md"]]: { marginBottom: "150px" },
+          [mq["lg"]]: { marginBottom: "200px" },
         })}
       >
         {title}
