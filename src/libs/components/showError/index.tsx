@@ -3,7 +3,9 @@ import { css } from "@emotion/react";
 
 export function ShowError() {
   return (
-    <>
+    <div css={css({
+      padding: '50px 20px',
+    })}>
       <svg
         width="40"
         height="40"
@@ -13,7 +15,7 @@ export function ShowError() {
         xmlSpace="preserve"
         css={css({
           display: 'block',
-          margin: '10px auto'
+          margin: '10px auto',
         })}
       >
         <path
@@ -42,6 +44,6 @@ export function ShowError() {
       >
         Upss! Something wrong :(
       </p>
-    </>
+    </div>
   );
 }

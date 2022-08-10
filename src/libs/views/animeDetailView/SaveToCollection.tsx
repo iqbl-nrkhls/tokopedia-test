@@ -3,9 +3,11 @@ import { css } from "@emotion/react";
 import { IconBookmarkPlus } from "libs/components/icons/BookmarkPlus";
 import useOutsideClick from "libs/helpers/useOutsideClick";
 import {
-  CollectionsType,
+  addAnime,
+  CollectionType,
   getCollections,
   isCollectionAvailable,
+  removeAnime,
   saveCollections,
 } from "libs/models/localSorage";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
@@ -14,7 +16,7 @@ export function SaveToCollection({ data }: any) {
   const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const contentRef = useRef() as MutableRefObject<HTMLDivElement>;
   const [show, setShow] = useState<boolean>(false);
-  const [collections, setCollections] = useState<CollectionsType[]>([]);
+  const [collections, setCollections] = useState<CollectionType[]>([]);
 
   useOutsideClick([buttonRef, contentRef], () => setShow(false));
 
@@ -24,7 +26,7 @@ export function SaveToCollection({ data }: any) {
 
   const addCollection = () => {
     const collectionName = window.prompt("Inser collection name");
-    if (collectionName !== null) {
+    if (collectionName !== null && collectionName !== "") {
       if (isCollectionAvailable(collectionName)) {
         const newData = [...collections, { name: collectionName, data: [] }];
         setCollections(newData);
@@ -38,36 +40,17 @@ export function SaveToCollection({ data }: any) {
   };
 
   const addToCollection = (name: string) => {
-    const newData = collections.map((collection) => {
-      if (collection.name == name) {
-        return {
-          name: collection.name,
-          data: [
-            ...collection.data,
-            {
-              id: data.id,
-              coverImage: data.coverImage.large,
-              title: data.title.romaji,
-            },
-          ],
-        };
-      }
-      return collection;
+    const newData = addAnime(collections, name, {
+      id: data.id,
+      coverImage: data.coverImage.large,
+      title: data.title.romaji,
     });
     setCollections(newData);
     saveCollections(newData);
   };
 
   const removeInCollection = (name: string, id: number) => {
-    const newData = collections.map((collection) => {
-      if (collection.name == name) {
-        return {
-          name: collection.name,
-          data: collection.data.filter((saved) => saved.id !== data.id)
-        };
-      }
-      return collection;
-    });
+    const newData = removeAnime(collections, name, id);
     setCollections(newData);
     saveCollections(newData);
   };

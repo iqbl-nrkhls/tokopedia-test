@@ -57,7 +57,7 @@ export function ShowAnime() {
         {data.Page.media.map((anime: AnimeType) => (
           <Card
             key={anime.id}
-            id={anime.id}
+            href={`/anime/${anime.id}`}
             title={anime.title.romaji}
             coverImage={anime.coverImage.medium}
           />

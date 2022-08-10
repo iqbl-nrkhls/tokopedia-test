@@ -3,15 +3,15 @@ import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 
 type CardProps = {
-  id: string | number;
   coverImage: string;
   title: string;
-}
+  href: string;
+};
 
-export function Card({ id, coverImage, title }: CardProps) {
+export function Card({ coverImage, title, href }: CardProps) {
   return (
     <Link
-      to={`/anime/${id}`}
+      to={href}
       css={css({
         display: 'block',
         background: '#fff',

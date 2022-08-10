@@ -4,21 +4,29 @@ import { mq } from "libs/emotion/mediaQuery";
 import { Card } from "libs/components/card";
 import { CollectionType, getCollections } from "libs/models/localSorage";
 import { useEffect, useState } from "react";
-import { AddCollection } from "./AddCollection";
+import { useParams } from "react-router-dom";
 
-export function ShowCollections() {
-  const [collections, setCollections] = useState<CollectionType[]>([]);
+export function ShowCollectionDetail() {
+    const { id } = useParams();
+
+  const [collections, setCollection] = useState<CollectionType[]>([]);
 
   useEffect(() => {
-    setCollections(JSON.parse(getCollections()));
+    setCollection(JSON.parse(getCollections()));
   }, []);
+
+  const collection = collections[Number(id || 0)];
 
   return (
     <>
-      <AddCollection
-        collections={collections}
-        setCollections={setCollections}
-      />
+      <h1
+        css={css({
+          textAlign: "center",
+          margin: "50px 10px",
+        })}
+      >
+        {collection?.name}
+      </h1>
 
       <div
         css={css({
@@ -33,12 +41,12 @@ export function ShowCollections() {
           },
         })}
       >
-        {collections.map((collection, i) => (
+        {collection?.data.map((anime, i) => (
           <Card
             key={i}
-            href={`/collection/${i}`}
-            title={collection.name}
-            coverImage={collection.data[0]?.coverImage}
+            href={`/anime/${anime.id}`}
+            title={anime.title}
+            coverImage={anime.coverImage}
           />
         ))}
       </div>
