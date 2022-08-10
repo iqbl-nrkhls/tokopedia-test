@@ -9,9 +9,6 @@ import {
 import { Toast } from "libs/toast";
 
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
-const MySwal = withReactContent(Swal);
 
 type AddCollectionProps = {
   collections: CollectionType[];
@@ -20,7 +17,7 @@ type AddCollectionProps = {
 
 export function AddCollection({ collections, setCollections }: AddCollectionProps) {
   const addCollection = async () => {
-    const { value: collectionName } = await MySwal.fire({
+    const { value: collectionName } = await Swal.fire({
       title: "Insert a collection name",
       input: "text",
       showCancelButton: true,

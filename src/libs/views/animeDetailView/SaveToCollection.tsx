@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Button } from "libs/button";
-import { IconBookmarkPlus } from "libs/components/icons/BookmarkPlus";
+import { IconBookmarkPlus } from "libs/components/icons/IconBookmarkPlus";
 import useOutsideClick from "libs/helpers/useOutsideClick";
 import {
   addAnime,
@@ -13,11 +13,9 @@ import {
 } from "libs/models/localSorage";
 import { Toast } from "libs/toast";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
-const MySwal = withReactContent(Swal);
 
 export function SaveToCollection({ data }: any) {
   const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
@@ -32,7 +30,7 @@ export function SaveToCollection({ data }: any) {
   }, []);
 
   const addCollection = async () => {
-    const { value: collectionName } = await MySwal.fire({
+    const { value: collectionName } = await Swal.fire({
       title: "Insert a collection name",
       input: "text",
       showCancelButton: true,
@@ -127,22 +125,53 @@ export function SaveToCollection({ data }: any) {
           })}
         >
           {collections.map((e, i) => (
-            <button
-              onClick={() => {
-                e.data.find((e) => e.id === data.id)
-                  ? removeInCollection(e.name, data.id)
-                  : addToCollection(e.name);
-              }}
+            <div
+              key={i}
+              css={css({
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                borderBottom: "1px solid #ddd",
+              })}
             >
-              add to {e.name}
-              {e.data.find((e) => e.id === data.id) ? " (done)" : null}
-            </button>
+              <p css={css({ margin: "5px" })}>{e.name}</p>
+              {!e.data.find((e) => e.id === data.id) ? (
+                <button
+                  onClick={() => {
+                    e.data.find((e) => e.id === data.id)
+                      ? removeInCollection(e.name, data.id)
+                      : addToCollection(e.name);
+                  }}
+                  css={css({
+                    fontSize: "12px",
+                    background: "#ddd",
+                    border: "1px solid #555",
+                    borderRadius: "2px",
+                  })}
+                >
+                  Add
+                </button>
+              ) : (
+                <Link to={`/collection/${i}`}>
+                  <button
+                    css={css({
+                      fontSize: "12px",
+                      background: "#ddd",
+                      border: "1px solid #555",
+                      borderRadius: "2px",
+                    })}
+                  >
+                    View
+                  </button>
+                </Link>
+              )}
+            </div>
           ))}
           <Button
             onClick={addCollection}
             css={css({
               display: "block",
-              margin: "0 auto",
+              margin: "5px auto",
             })}
           >
             Add new collection

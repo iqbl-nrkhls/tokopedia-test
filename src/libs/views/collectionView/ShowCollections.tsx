@@ -2,9 +2,18 @@
 import { css } from "@emotion/react";
 import { mq } from "libs/emotion/mediaQuery";
 import { Card } from "libs/components/card";
-import { CollectionType, getCollections } from "libs/models/localSorage";
-import { useEffect, useState } from "react";
+import {
+  CollectionType,
+  getCollections,
+  removeCollection,
+  saveCollections,
+} from "libs/models/localSorage";
+import { MouseEvent, useEffect, useState } from "react";
 import { AddCollection } from "./AddCollection";
+import { IconDelete } from "libs/components/icons/IconDelete";
+
+import Swal from "sweetalert2";
+import { Toast } from "libs/toast";
 
 export function ShowCollections() {
   const [collections, setCollections] = useState<CollectionType[]>([]);
@@ -12,6 +21,23 @@ export function ShowCollections() {
   useEffect(() => {
     setCollections(JSON.parse(getCollections()));
   }, []);
+
+  const handleDelete = (e: MouseEvent<HTMLButtonElement>, index: number) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "Do you want to remove this collection?",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newData = removeCollection(collections, index);
+        saveCollections(newData);
+        setCollections(newData);
+        Toast.fire("Collection has been deleted", "", "success");
+      }
+    });
+  };
 
   return (
     <>
@@ -40,13 +66,28 @@ export function ShowCollections() {
               href={`/collection/${i}`}
               title={collection.name}
               coverImage={collection.data[0]?.coverImage || "./default.png"}
+              extraButton={
+                <button
+                  css={css({
+                    borderRadius: "50%",
+                    aspectRatio: "1",
+                    border: "none",
+                    color: "#fff",
+                    background: "#b02323",
+                    cursor: "pointer",
+                  })}
+                  onClick={(e) => handleDelete(e, i)}
+                >
+                  <IconDelete />
+                </button>
+              }
             />
           ))
         ) : (
           <p
             css={css({
               textAlign: "center",
-              gridColumn: 'span 4',
+              gridColumn: "span 4",
             })}
           >
             You don't have a collection
